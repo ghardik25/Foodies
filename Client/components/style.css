@@ -1,0 +1,99 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  /* background-color: #eeedeb; */
+  /* overflow: hidden; */
+}
+
+/* Navigation Bar */
+.navbar {
+  --bs-navbar-padding-x: 0.5rem;
+  --bs-navbar-padding-y: 0.8rem;
+  --bs-navbar-toggler-font-size: 1.5rem;
+  --bs-navbar-brand-font-size: 1.5rem;
+  height: fit-content;
+  font-size: large;
+  background-color: #eeedeb;
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+
+/* Home Page */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.section-1-header {
+    font-size: 10rem;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 630px;
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: 630px;
+  object-fit: cover;
+  mix-blend-mode:multiply;
+}
+ 
+.video-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 630px;
+    background: rgba(0, 0, 0, 0.3); /* Adjust the opacity as needed */
+    pointer-events: none;
+}
+
+
+/* Menu-Style */
+.menu-card {
+  height: fit-content;
+  background-color: #eeedeb;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-style: none;
+}
+
+
+/* Feedback-Style */
+.feedback-card {
+    height: fit-content;
+    background-color: #eeedeb;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-style: none;
+}
+
+
+/* buttons */
+.button {
+  /* margin-right: 2rem; */
+  background-color: white;
+  border-style: none;
+}
+
+.button:hover {
+  background-color: #FFAD60;
+  scale: 1.03;
+}
