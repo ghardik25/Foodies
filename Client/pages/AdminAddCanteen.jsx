@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AdminAddCanteenForm from "../components/AdminAddCanteenForm";
 
+const BASE_URL = process.env.VITE_APP_API_URL;
+
 export default function AdminAddCanteen() {
   const [userinfo, setuserinfo] = useState({
     name: "",
@@ -28,7 +30,7 @@ export default function AdminAddCanteen() {
       console.log("Started canteen registration up");
 
       // Req through fetch api
-      const response = await fetch("http://localhost:3000/signup", {
+      const response = await fetch(`${BASE_URL}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
