@@ -2,13 +2,15 @@ import { createContext, useState } from "react";
 
 export const InsertDeleteContext = createContext("");
 
+const BASE_URL = process.env.VITE_APP_API_URL;
+
 const DataManipulation = (props) => {
   const insertion = async (data, collection) => {
     try {
         console.log("Started Inserting");
   
         // Req through fetch api
-        const response = await fetch(`http://localhost:3000/add${collection}`, {
+        const response = await fetch(`${BASE_URL}/add${collection}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -35,7 +37,7 @@ const DataManipulation = (props) => {
         console.log("Started Deleting");
   
         // Req through fetch api
-        const response = await fetch(`http://localhost:3000/delete${collection}`, {
+        const response = await fetch(`${BASE_URL}/delete${collection}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
