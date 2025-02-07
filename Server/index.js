@@ -2,20 +2,21 @@ const express = require('express')
 const cors = require('cors')
 const router = require('./routes/routes');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 10000;
 
-app.use(cors())
-var corsOptions = {
-  origin: 'http://localhost:5173',
+// CORS Configuration
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
   optionsSuccessStatus: 200
-}
+};
 
-// Incoming datatype
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Router
 app.use('/', router);
 
+// Start Server
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`)
+  console.log(`Server running on port ${port}`);
 })
