@@ -1,6 +1,4 @@
 import bg from "../Videos/Home_vid.mp4";
-import linkedin from "../Images/linkedin.png";
-import github from "../Images/github.png";
 
 export default function Home() {
   return (
