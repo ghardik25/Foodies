@@ -4,6 +4,8 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { TimerContext } from "../context/TimerContext";
 
+const BASE_URL = process.env.VITE_APP_API_URL;
+
 export default function Signup() {
   const [userinfo, setuserinfo] = useState({
     name: "",
@@ -35,7 +37,7 @@ export default function Signup() {
       console.log("Started Signing up");
 
       // Req through fetch api
-      const response = await fetch("http://localhost:3000/signup", {
+      const response = await fetch(`${BASE_URL}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
