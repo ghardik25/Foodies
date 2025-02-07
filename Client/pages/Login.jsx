@@ -4,6 +4,8 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { TimerContext } from "../context/TimerContext";
 
+const BASE_URL = process.env.VITE_APP_API_URL;
+
 export default function Login() {
   const [userinfo, setuserinfo] = useState({
     email: "",
@@ -28,7 +30,7 @@ export default function Login() {
       console.log("Started Login");
 
       // Req through fetch api
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch(`${BASE_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
