@@ -29,14 +29,12 @@ export default function Signup() {
     setuserinfo({ ...userinfo, [targetName]: value });
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       console.log("Started Signing up");
 
-      // Req through fetch api
       const response = await fetch(`${BASE_URL}/signup`, {
         method: "POST",
         headers: {
@@ -44,30 +42,23 @@ export default function Signup() {
         },
         body: JSON.stringify(userinfo),
       });
-      console.log("Signed Up Successfully");
 
-      // Token generation
       const res = await response.json();
-      // console.log(`Response recieved: ${JSON.stringify(res)}`);
-      
-      if(res.valid === 0) {
+      console.log("Response from backend:", res); // Debugging
+
+      if (res.valid === 0) {
         const data = { token: res.token, email: userinfo.email, role: res.role };
-  
-        // Saving token
         saveToken(data);
         console.log("Saved token Successfully");
         navigate("/user");
-
-        // Setting a new timer
-        // setTimeout(deleteToken, 300*1000);
         newTimer(300);
-      }
-      else {
-        alert('User Already Exists, Please Login');
-        navigate('/login');
+      } else {
+        console.log("User already exists. Redirecting to login...");
+        alert("User Already Exists, Please Login");
+        navigate("/login");
       }
     } catch (error) {
-      console.log(`${error} in handleSubmit`);
+      console.error(`${error} in handleSubmit`);
     }
   };
 
