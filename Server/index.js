@@ -8,6 +8,7 @@ const port = process.env.PORT || 10000;
 const corsOptions = {
   origin: process.env.FRONTEND_URL || 'http://localhost:5173',
   optionsSuccessStatus: 200
+  credentials: true
 };
 
 app.use(cors(corsOptions));
