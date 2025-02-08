@@ -4,8 +4,6 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { TimerContext } from "../context/TimerContext";
 
-const BASE_URL = process.env.VITE_APP_API_URL;
-
 export default function Login() {
   const [userinfo, setuserinfo] = useState({
     email: "",
@@ -29,7 +27,6 @@ export default function Login() {
     try {
       console.log("Started Login");
 
-      // Req through fetch api
       const response = await fetch(`${BASE_URL}/login`, {
         method: "POST",
         headers: {
@@ -37,39 +34,34 @@ export default function Login() {
         },
         body: JSON.stringify(userinfo),
       });
-      console.log("Login Successfully");
 
       const res = await response.json();
+      console.log("Response from backend:", res); // Debugging
 
-      console.log('Verification Started');
+      console.log("Verification Started");
 
-      if(res.valid === -1) {
+      if (res.valid === -1) {
         const data = { token: res.token, email: userinfo.email, role: res.role };
         saveToken(data);
-
-        // Setting up new timer
-        // setTimeout(deleteToken, 300*1000);
         newTimer(300);
 
-        // Navigating according to userType
-        if(res.role === "admin") {
-          navigate('/admin');
+        console.log("Navigating user based on role...");
+        if (res.role === "admin") {
+          navigate("/admin");
+        } else if (res.role === "canteen") {
+          navigate("/canteen");
+        } else {
+          navigate("/user");
         }
-        else if(res.role === "canteen") {
-          navigate('/canteen');
-        }
-        else navigate('/user');
+      } else if (res.valid === 1) {
+        alert("Invalid Email or Password");
+      } else {
+        alert("No User Found, Please Sign-up");
+        navigate("/signup");
       }
-      else if(res.valid === 1) {
-        alert('Invalid Email or Password');
-      }
-      else {
-        alert('No User Found, Please Sign-up');
-        navigate('/signup');
-      }
-      console.log('Verification Ended');
+      console.log("Verification Ended");
     } catch (error) {
-      console.log(`${error} in handleSubmit`);
+      console.error(`${error} in handleSubmit`);
     }
   };
 
