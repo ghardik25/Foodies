@@ -4,6 +4,8 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { TimerContext } from "../context/TimerContext";
 
+const BASE_URL = process.env.VITE_APP_API_URL;
+
 export default function Login() {
   const [userinfo, setuserinfo] = useState({
     email: "",
